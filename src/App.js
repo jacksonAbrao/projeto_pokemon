@@ -2,7 +2,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
 /* eslint-disable react/button-has-type */
-/*  eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import PokemonThumnail from './components/PokemonThumnail';
 
@@ -11,7 +11,7 @@ function App() {
   const [allPokemons, setAllPokemons] = useState([]);
   // esta const, carrega mais pokemons, vinculado ao load more
   const [loadMorePokemons, setLoadMorePokemons] = useState(
-    'https://pokeapi.co/api/v2/pokemon?limit=20',
+    'https://pokeapi.co/api/v2/pokemon?limit=100',
   );
 
   const getAllPokemons = async () => {
@@ -43,15 +43,17 @@ function App() {
       <h1>Pokemons</h1>
       <div className="pokemon-container">
         <div className="all-container" />
-        {allPokemons.map((pokemon, index) => (
-          <PokemonThumnail
-            id={pokemon.id}
-            name={pokemon.name}
-            image={pokemon.sprites.other.dream_world.front_default}
-            type={pokemon.types[0].type.name}
-            key={index}
-          />
-        ))}
+        {allPokemons
+          .sort((a, b) => (a.id > b.id ? 1 : -1))
+          .map((pokemon, index) => (
+            <PokemonThumnail
+              id={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.sprites.other.dream_world.front_default}
+              type={pokemon.types[0].type.name}
+              key={index}
+            />
+          ))}
         <button className="load-more" onClick={() => getAllPokemons()}>
           Load More
         </button>
