@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/no-array-index-key */
@@ -6,6 +8,8 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import PokemonThumnail from '../components/PokemonThumnail';
 
 function App() {
@@ -40,9 +44,9 @@ function App() {
     getAllPokemons();
   }, []);
   return (
-    <div className="font-sans grid justify-items-center">
-      <h1>Pokedex</h1>
-      <div className="flex capitalize content-around  flex-wrap justify-center">
+    <div className="font-sans grid justify-items-center bg-white dark:bg-gray-800">
+      <Header />
+      <div className="flex capitalize content-around  flex-wrap justify-center  text-gray-600 dark:text-gray-300">
         {allPokemons
           .sort((a, b) => (a.id > b.id ? 1 : -1))
           .map((pokemon, index) => (
@@ -74,6 +78,7 @@ function App() {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
