@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-shadow */
@@ -12,7 +13,7 @@ function App() {
   const [allPokemons, setAllPokemons] = useState([]);
   // esta const, carrega mais pokemons, vinculado ao load more
   const [loadMorePokemons, setLoadMorePokemons] = useState(
-    'https://pokeapi.co/api/v2/pokemon?limit=5',
+    'https://pokeapi.co/api/v2/pokemon?limit=100',
   );
 
   const getAllPokemons = async () => {
@@ -38,11 +39,10 @@ function App() {
   useEffect(() => {
     getAllPokemons();
   }, []);
-
   return (
     <div className="font-sans grid justify-items-center">
-      <h1>A&M Pokedex</h1>
-      <div className="flex test flex-wrap flex-row justify-center justify-self-auto">
+      <h1>Pokedex</h1>
+      <div className="flex capitalize content-around  flex-wrap justify-center">
         {allPokemons
           .sort((a, b) => (a.id > b.id ? 1 : -1))
           .map((pokemon, index) => (
@@ -51,9 +51,17 @@ function App() {
               name={pokemon.name}
               image={pokemon.sprites.other.dream_world.front_default}
               type={pokemon.types[0].type.name}
+              ability={pokemon.abilities[0].ability.name}
+              hp={pokemon.stats[0].base_stat}
+              attack={pokemon.stats[1].base_stat}
+              defense={pokemon.stats[2].base_stat}
+              speed={pokemon.stats[5].base_stat}
+              height={pokemon.height}
+              weight={pokemon.weight}
               key={index}
             />
           ))}
+
         <div className="">
           <button
             className="searchButton thumb-container flex justify-center justify-self-auto"

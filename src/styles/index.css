@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: rgba(238, 232, 232, 0.089);
+}
+/********************* Botão de busca de novos pokemons **************/
 .searchButton {
   background: linear-gradient(
     0deg,
@@ -10,66 +14,119 @@
     rgba(255, 57, 98, 1) 50%,
     rgba(255, 57, 98, 1) 100%
   );
-  font-size: 1.3rem;
 }
-
-.rock small {
+/*********************** Cores pelos tipos de pokemons **************/
+.rock small,
+.rock .infoButton {
   background-color: rgb(148, 81, 81);
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-.ground small {
+.ground small,
+.ground .infoButton {
   background-color: #cfb274;
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-.ghost small {
+.ghost small,
+.ghost .infoButton {
   background-color: rgb(247, 247, 247);
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-.electric small {
+.electric small,
+.electric .infoButton {
   background-color: rgb(252, 252, 92);
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-.bug small {
+.bug small,
+.bug .infoButton {
   background-color: #f6d6a7;
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-.poison small {
+.poison small,
+.poison .infoButton {
   background-color: #e0a7f6;
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-.normal small {
+.normal small,
+.normal .infoButton {
   background-color: #f4f4f4;
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-.fairy small {
+.fairy small,
+.fairy .infoButton {
   background-color: rgba(255, 192, 203, 0.863);
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-.fire small {
+.fire small,
+.fire .infoButton {
   background-color: #fbe3df;
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-.grass small {
+.grass small,
+.grass .infoButton {
   background-color: #e1f5f9;
   padding: 0 5px 2px;
   border-radius: 10px;
 }
-
-.water small {
+.water small,
+.water .infoButton {
   background-color: #e0f1fd;
   box-sizing: border-box;
   padding: 0 5px 2px;
   border-radius: 10px;
 }
+.psychic small,
+.psychic .infoButton {
+  background-color: #44f1b8;
+  box-sizing: border-box;
+  padding: 0 5px 2px;
+  border-radius: 10px;
+}
+.fighting small,
+.fighting .infoButton {
+  background-color: #f04d4d;
+  box-sizing: border-box;
+  padding: 0 5px 2px;
+  border-radius: 10px;
+}
+.dragon small,
+.dragon .infoButton {
+  background-color: #bb9142;
+  box-sizing: border-box;
+  padding: 0 5px 2px;
+  border-radius: 10px;
+}
+.ice small,
+.ice .infoButton {
+  background-color: #4254bb;
+  box-sizing: border-box;
+  padding: 0 5px 2px;
+  border-radius: 10px;
+}
+.dark small,
+.dark .infoButton {
+  background-color: #040a2b52;
+  box-sizing: border-box;
+  padding: 0 5px 2px;
+  border-radius: 10px;
+}
+.ghost small,
+.ghost .infoButton {
+  background-color: #490b3652;
+  box-sizing: border-box;
+  padding: 0 5px 2px;
+  border-radius: 10px;
+}
+
+/**************************** card pokemon *************************/
 .thumb-container {
   display: flex;
   flex-direction: column;
@@ -83,27 +140,83 @@
   text-align: center;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.089);
 }
-h3 {
-  margin-bottom: 0.2rem;
-}
 .thumb-container .number {
   border-radius: 1rem;
   padding: 0.2rem 0.4rem;
-  background-color: rgba(255, 255, 255, 0.3);
 }
 .thumb-container img {
   width: 120px;
   height: 120px;
 }
-.test {
-  text-transform: capitalize;
+h3 {
+  margin-bottom: 0.2rem;
 }
-.load-more {
-  background: #f5f5f5 linear-gradient(#f5f5f5, #f1f1f1) repeat-x;
-  border-radius: 2px;
-  border: 1px solid #c6c6c6;
-  color: #444;
-  padding: 0.5rem 1.5rem;
-  min-width: 50%;
-  margin-top: 1rem;
+/*********************** Modal ************************/
+.modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  background-color: white;
+  position: fixed;
+  width: auto;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 1px 8px 20px rgba(0, 0, 0, 0.089);
+  align-items: center;
+}
+.close {
+  background-color: transparent !important;
+  outline: none;
+  width: 32px;
+  height: 32px;
+  right: calc(-100% + 40px);
+  top: 16px;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.close:before,
+.close:after {
+  content: ' ';
+  position: absolute;
+  width: 2.5px;
+  height: 24px;
+  background-color: black;
+  z-index: 13;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+.modalCard {
+  margin: 0px;
+  align-items: center;
+}
+.modalCard .h1Modal {
+  text-align: center;
+  font-size: 2.3rem;
+  padding-left: 20px;
+}
+.modalCard .textModal {
+  text-align: left;
+  padding: 20px;
+}
+
+.modalCard img {
+  margin: 20px;
+  width: 15rem;
+  height: 15rem;
 }
